@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="fragmento" class="container mt-5">
+    <h2>Detalle de Usuario</h2>
+    <div class="card mx-auto" style="max-width: 500px;">
+        <div class="card-body">
+            <h5 class="card-title">Información del Usuario</h5>
+            <p class="card-text">
+                <strong>Tipo:</strong> <span th:text="${Usuario.tipo != null ? Usuario.tipo.nombreTipo : 'Sin Tipo'}"></span><br>
+                <strong>Nombre:</strong> <span th:text="${Usuario.user}"></span><br>
+                <div class="d-flex justify-content-center">
+                    <img th:src="@{/Usuarios/{nombreImagen}(nombreImagen=${Usuario.foto})}" alt="Imagen de Usuario" class="img-foto">
+                </div>
+            </p>
+        </div>
+
+    </div>
+    <div class="mt-3">
+        <a th:href="@{/Usuarios}" class="btn btn-primary">Regresar</a>
+    </div>
+</div>
+</body>
+</html>

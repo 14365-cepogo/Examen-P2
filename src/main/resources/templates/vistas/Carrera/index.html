@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="fragmento" class="container mt-5">
+
+    <div class="d-flex justify-content-between mb-3">
+        <h3>Carreras</h3>
+    </div>
+    <!-- th:href="@{/tu-destino}"-->
+    <div class="d-flex justify-content-between mb-3">
+        <a  th:href="@{/Carreras/new}" class="btn btn-warning btn-sm">Nuevo</a>
+    </div>
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th>Nombre</th>
+            <th>ACCIONES</th>
+        </tr>
+        </thead>
+        <th:block th:each="user : ${listCarreras}">
+            <tr>
+                <td>[[${user.nombreCarrera}]]</td>
+                <td>
+                    <a th:href="@{'/Carreras/edit/' + ${user.id}}" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:href="@{'/Carreras/detail/' + ${user.id}}" class="btn btn-primary btn-sm">Detalle</a>
+                    <a th:href="@{'/Carreras/delete/' + ${user.id}}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>
