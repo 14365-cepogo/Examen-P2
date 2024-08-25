@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="fragmento" class="container mt-5">
+    <div class="d-flex justify-content-between mb-3">
+        <h3>[[${pageTitle}]]</h3>
+    </div>
+    <form th:action="@{/Carreras/save}" method="post" th:object="${Carrera}">
+        <input type="hidden" th:field="*{id}">
+        <table class="table table-bordered table-hover">
+            <tbody>
+
+            <tr>
+                <td>DEPARTAMENTO:</td>
+                <td>
+                    <select th:field="*{departamento.id}" class="form-control">
+                        <option value="" disabled selected>Selecciona el departamento</option>
+                        <option th:each="departamento : ${listDepartamentos}" th:value="${departamento.id}" th:text="${departamento.nombreDepartamento}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>NOMBRE:</td>
+                <td><input type="text" class="form-control" th:field="*{nombreCarrera}" required minlength="2" maxlength="45"></td>
+            </tr>
+            <tr>
+                <td>NUMERO NIVEL:</td>
+                <td><input type="number" class="form-control" th:field="*{numNivel}" required step="1"></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-success btn-sm">Guardar</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <div class="mt-3">
+        <a th:href="@{/Carreras}" class="btn btn-primary">Cancelar</a>
+    </div>
+</div>
+
+</body>
+</html>
